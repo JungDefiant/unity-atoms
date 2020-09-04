@@ -59,7 +59,7 @@ namespace UnityAtoms.Mobile
         /// Input position last time the user pressed down in world space.
         /// </summary>
         /// <returns>Input position last time the user pressed down in world space.</returns>
-        public Vector2 InputWorldPosLastDown { get { return _currentCamera ?
+        public Vector2 InputWorldPosLastDown { get { return GetCamera() ?
                     GetCamera().ScreenToWorldPoint(InputWorldPosLastDown) : Vector3.zero; } }
 
         /// <summary>
