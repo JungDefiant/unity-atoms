@@ -14,8 +14,8 @@
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ext.nunit": "1.0.0",
     "com.unity.ide.rider": "1.1.4",
-    "com.unity.ide.vscode": "1.2.0",
-    "com.unity.test-framework": "1.1.13",
+    "com.unity.ide.vscode": "1.2.1",
+    "com.unity.test-framework": "1.1.16",
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -47,13 +47,9 @@
     {
       "name": "NPM",
       "url": "https://registry.npmjs.org",
-      "scopes": ["com.mambojambostudios.marvelous"]
+      "scopes": [
+        "com.mambojambostudios.marvelous"
+      ]
     }
-  ],
-  "lock": {
-    "com.neuecc.unirx": {
-      "revision": "7.1.0-upm",
-      "hash": "f93af89f2aafeccfc7aff9dee2cecc6d60ede06b"
-    }
-  }
+  ]
 }

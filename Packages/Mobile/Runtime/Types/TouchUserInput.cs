@@ -45,19 +45,22 @@ namespace UnityAtoms.Mobile
         /// The input position in world space.
         /// </summary>
         /// <returns>The input position in world space.</returns>
-        public Vector2 InputWorldPos { get { return Camera.main.ScreenToWorldPoint(InputPos); } }
+        public Vector2 InputWorldPos { get { return GetCamera() ?
+                    GetCamera().ScreenToWorldPoint(InputPos) : Vector3.zero; } }
 
         /// <summary>
         /// The input position in world space from last frame.
         /// </summary>
         /// <returns>The input position in world space from last frame.</returns>
-        public Vector2 InputWorldPosLastFrame { get { return Camera.main.ScreenToWorldPoint(InputPosLastFrame); } }
+        public Vector2 InputWorldPosLastFrame { get { return GetCamera() ?
+                    GetCamera().ScreenToWorldPoint(InputPosLastFrame) : Vector3.zero; } }
 
         /// <summary>
         /// Input position last time the user pressed down in world space.
         /// </summary>
         /// <returns>Input position last time the user pressed down in world space.</returns>
-        public Vector2 InputWorldPosLastDown { get { return Camera.main.ScreenToWorldPoint(InputPosLastDown); } }
+        public Vector2 InputWorldPosLastDown { get { return _currentCamera ?
+                    GetCamera().ScreenToWorldPoint(InputWorldPosLastDown) : Vector3.zero; } }
 
         /// <summary>
         /// Create a `TouchUserInput` class.
@@ -72,6 +75,7 @@ namespace UnityAtoms.Mobile
             this.InputPos = inputPos;
             this.InputPosLastFrame = inputPosLastFrame;
             this.InputPosLastDown = inputPosLastDown;
+            this._currentCamera = Camera.main;
         }
 
         /// <summary>
@@ -128,6 +132,24 @@ namespace UnityAtoms.Mobile
         public static bool operator !=(TouchUserInput touch1, TouchUserInput touch2)
         {
             return !touch1.Equals(touch2);
+        }
+
+        /// <summary>
+        /// Current camera to render from
+        /// </summary>
+        private Camera _currentCamera;
+
+        /// <summary>
+        /// Gets first camera that is rendering
+        /// </summary>
+        /// <returns>First camera that is rendering</returns>
+        private Camera GetCamera()
+        {
+            if (_currentCamera != null) return _currentCamera;
+
+            var camera = Camera.main;
+            _currentCamera = _currentCamera ? camera : UnityEngine.Object.FindObjectOfType<Camera>();
+            return _currentCamera;
         }
     }
 }
